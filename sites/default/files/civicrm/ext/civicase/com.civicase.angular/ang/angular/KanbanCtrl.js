@@ -81,8 +81,16 @@
     CRM.api3('Case', 'create', {
     id:curid,
             status_id:statausid
-    }).done(function(result) {});
+    }).done(function(result) {
+       
+    });
     };
+    
+    $scope.$apply(function() {
+    $scope.list1 = myCases_status1.values;
+    $scope.list2 = myCases_status2.values;
+    $scope.list3 = myCases_status3.values;
+});
  });
 
 
