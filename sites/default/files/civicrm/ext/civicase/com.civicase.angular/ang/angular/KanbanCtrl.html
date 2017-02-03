@@ -1,4 +1,4 @@
-
+<input type="text" class="form-control" ng-model="searchKeyword" maxlength="1" placeholder='Filter by status(eg. 1,2,3)'/>
 <div class="crm-container">  
     <div class='contentWrapper ng-cloak'>
         <div class='content'>
@@ -9,15 +9,15 @@
                         <div class="thumbnail" data-drop="true" ng-model='list1' data-val="1"   jqyoui-droppable="{multiple:true, onDrop:'update_item'}">
                             <div class="caption">
                                 <div class="btn btn-info btn-draggable" 
-                                     ng-repeat="item in list1" ng-show="item.subject"  data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},animate:true}">
+                                     ng-repeat="item in list1 | filter:{ 'status_id': searchKeyword}" ng-show="item.subject"  data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{index: {{$index}},animate:true}">
                                     <div class="contact_name" ng-repeat="contact in myContact_detail| filter:{ 'contact_id':  item.contact_id[1]} : true ">                                          
                                             <div class="image" ng-if="contact.image_URL"><img class="profilepic" ng-src="  {{contact.image_URL}}" alt="Home"></div>
-                                            <div class="case_id">Case ID: {{item.id}}</div>
-                                            <div class="case_name"> {{contact.sort_name}}</div>
-                                            <span class="owner_name">Owner: Alice shine</span>
-                                            <span class="activity_log" >
-                                                No of activities:  {{(myActivity_log| filter:{contact_id: item.contact_id[1]} : true).length}}
-                                            </span>
+                                            <div class="case_id"><a target="_blank" href='../contact/view/case?cid={{item.id}}&action=view'>Case ID: {{item.id}}</a></div>
+                                            <div class="case_name"><a target="_blank" href='../contact/view/?cid={{item.contact_id[1]}}'> {{contact.sort_name}}</a></div>
+                                            <div class="owner_name">Owner: Alice shine</div>
+                                            <div class="activity_log" >
+                                                No of activities:  <a target="_blank" href='../contact/view/case?cid={{item.id}}&action=view'>{{(myActivity_log| filter:{contact_id: item.contact_id[1]} : true).length}}</a>
+                                            </div>
                                             <div class="case_open_date">Case open date: {{item.start_date|  date :  "MM/dd/yyyy"}}</div>
                                         </div>
                                     </div>
@@ -26,17 +26,18 @@
                         </li>
                         <li class="span4" style='margin-left:10px;'>
                             <div>Case Status Id 2</div>
-                            <div class="thumbnail"  data-val="2" data-drop="true" ng-model='list2' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list2])'}"   jqyoui-droppable="{multiple:true, onDrop:'update_item()'}">
+                             <div class="thumbnail" data-drop="true" ng-model='list2' data-val="2"   jqyoui-droppable="{multiple:true, onDrop:'update_item'}">
+                            
                                 <div class="caption">
-                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list2" ng-show="item.subject" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}">
+                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list2 | filter:{ 'status_id': searchKeyword}" ng-show="item.subject" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}">
                                         <div class="contact_name" ng-repeat="contact in myContact_detail| filter:{ 'contact_id':  item.contact_id[1]} : true ">
                                             <div class="image" ng-if="contact.image_URL"><img class="profilepic" ng-src="{{contact.image_URL}}" alt="Home"></div>
-                                            <div class="case_id">Case ID: {{item.id}}</div>
-                                            <div class="case_name"> {{contact.sort_name}}</div>
-                                            <span class="owner_name">Owner: Alice shine</span>
-                                            <span class="activity_log" >
-                                                No of activities:  {{(myActivity_log| filter:{contact_id: item.contact_id[1]} : true).length}}
-                                            </span>
+                                            <div class="case_id"><a target="_blank" href='../contact/view/case?cid={{item.id}}&action=view'>Case ID: {{item.id}}</a></div>
+                                            <div class="case_name"><a target="_blank" href='../contact/view/?cid={{item.contact_id[1]}}'> {{contact.sort_name}}</a></div>
+                                            <div class="owner_name">Owner: Alice shine</div>
+                                            <div class="activity_log" >
+                                                No of activities:  <a target="_blank" href='../contact/view/case?cid={{item.id}}&action=view'>{{(myActivity_log| filter:{contact_id: item.contact_id[1]} : true).length}}</a>
+                                            </div>
                                             <div class="case_open_date">Case open date: {{item.start_date|  date :  "MM/dd/yyyy"}}</div>
                                         </div>
                                     </div>
@@ -45,17 +46,18 @@
                         </li>
                         <li class="span4 last" style='margin-left:10px;'>
                             <div>Case Status Id 3</div>
-                            <div class="thumbnail"  data-val="3" data-drop="true" ng-model='list3' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list3])'}"   jqyoui-droppable="{multiple:true, onDrop:'update_item()'}">
+                             <div class="thumbnail" data-drop="true" ng-model='list3' data-val="3"   jqyoui-droppable="{multiple:true, onDrop:'update_item'}">
+                            
                                 <div class="caption">
-                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list3" ng-show="item.subject" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list3" jqyoui-draggable="{index: {{$index}},animate:true}">
+                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list3 | filter:{ 'status_id': searchKeyword}" ng-show="item.subject" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list3" jqyoui-draggable="{index: {{$index}},animate:true}">
                                         <div class="contact_name" ng-repeat="contact in myContact_detail| filter:{ 'contact_id':  item.contact_id[1]} : true ">
                                             <div class="image" ng-if="contact.image_URL"><img class="profilepic" ng-src="{{contact.image_URL}}" alt="Home"></div>
-                                            <div class="case_id">Case ID: {{item.id}}</div>
-                                            <div class="case_name"> {{contact.sort_name}}</div>
-                                            <span class="owner_name">Owner: Alice shine</span>
-                                            <span class="activity_log" >
-                                                No of activities:  {{(myActivity_log| filter:{contact_id: item.contact_id[1]} : true).length}}
-                                            </span>
+                                            <div class="case_id"><a target="_blank" href='../contact/view/case?cid={{item.id}}&action=view'>Case ID: {{item.id}}</a></div>
+                                            <div class="case_name"><a target="_blank" href='../contact/view/?cid={{item.contact_id[1]}}'> {{contact.sort_name}}</a></div>
+                                            <div class="owner_name">Owner: Alice shine</div>
+                                            <div class="activity_log" >
+                                                No of activities: <a target="_blank" href='../contact/view/case?cid={{item.id}}&action=view'> {{(myActivity_log| filter:{contact_id: item.contact_id[1]} : true).length}}</a>
+                                            </div>
                                             <div class="case_open_date">Case open date: {{item.start_date|  date :  "MM/dd/yyyy"}}</div> 
                                         </div>
                                     </div>
